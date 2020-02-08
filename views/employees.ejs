@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/head.ejs') -%>
+</head>
+
+<body class="bg-info">
+  <div class="row">
+    <div class="wrapper col-md-6 offset-md-3">
+      <h3>Insert Employee</h3>
+      <form action="">
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="inputFullName">Full Name</label>
+          <input type="text" class="form-control" id="inputFullName" name="fullName"
+            placeholder="Please Enter Your Full Name" required>
+        </div>
+        <!-- Email -->
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="name@example.com"
+            required aria-describedby="emailHelp" required>
+        </div>
+        <div class="form-row">
+          <!-- Phone Number -->
+          <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">Phone Number</label>
+            <input type="tel" class="form-control" id="exampleInputEmail1" name="phoneNumber" placeholder="Phone Number"
+              pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required>
+          </div>
+          <!-- City -->
+          <div class="form-group col-md-6">
+            <label for="exampleInputEmail1">City</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" name="city" placeholder="City" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-info"><i class="fas fa-database"></i> Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

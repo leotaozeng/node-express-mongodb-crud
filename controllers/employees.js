@@ -1,3 +1,3 @@
 exports.getEmployees = (req, res, next) => {
-  res.json('sample text')
+  res.render('employees')
 }
