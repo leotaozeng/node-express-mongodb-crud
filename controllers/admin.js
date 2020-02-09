@@ -28,7 +28,14 @@ function handleValidationError(err, body) {
 }
 
 exports.getEmployees = (req, res, next) => {
-  res.render('admin/employees')
+  // find documents
+  Employee.find({}, function (err, docs) {
+    if (!err) {
+      res.render('admin/employees', {
+        employees: docs
+      })
+    }
+  })
 }
 
 exports.getAddEmployee = (req, res, next) => {
@@ -36,21 +43,22 @@ exports.getAddEmployee = (req, res, next) => {
 }
 
 exports.postAddEmployee = (req, res, next) => {
-  const { fullName, email, phone, city } = req.body
-  // Instantiate the model
+  // instantiate the model
   const employee = new Employee()
+  const { fullName, email, phone, city } = req.body
 
   employee.fullName = fullName
   employee.email = email
   employee.phone = phone
   employee.city = city
 
+  // save the document
   employee.save((err) => {
     if (!err) {
       res.redirect('/admin/employees')
     } else if (err.name === 'ValidationError') {
       handleValidationError(err, req.body)
-      
+
       res.render('admin/add-employee', {
         employee: req.body
       })
