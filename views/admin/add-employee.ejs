@@ -13,26 +13,35 @@
         <!-- Full Name -->
         <div class="form-group">
           <label for="inputFullName">Full Name</label>
-          <input type="text" class="form-control" id="inputFullName" name="fullName"
-            placeholder="Please Enter Your Full Name" required>
+          <input type="text" class="form-control" id="inputFullName" name="fullName" value="<%= typeof(employee) !== 'undefined' ? employee.fullName : '' %>" placeholder="Please Enter Your Full Name">
+          <% if (typeof(employee) !== 'undefined') { %>
+          <div class="text-danger"><%= employee.fullNameError %></div>
+          <% } %>
         </div>
         <!-- Email -->
         <div class="form-group">
           <label for="inputEmail1">Email</label>
-          <input type="email" class="form-control" id="inputEmail1" name="email" placeholder="name@example.com"
-            required aria-describedby="emailHelp" required>
+          <input type="email" class="form-control" id="inputEmail1" name="email" value="<%= typeof(employee) !== 'undefined' ? employee.email : '' %>" placeholder="name@example.com" aria-describedby="emailHelp">
+          <% if (typeof(employee) !== 'undefined') { %>
+          <div class="text-danger"><%= employee.emailError %></div>
+          <% } %>
         </div>
         <div class="form-row">
           <!-- Phone Number -->
           <div class="form-group col-md-6">
             <label for="inputPhoneNumber">Phone Number</label>
-            <input type="tel" class="form-control" id="inputPhoneNumber" name="phone" placeholder="Phone Number"
-              pattern="[0-9]{3}[0-9]{4}[0-9]{4}" required>
+            <input type="tel" class="form-control" id="inputPhoneNumber" name="phone" value="<%= typeof(employee) !== 'undefined' ? employee.phone : '' %>" placeholder="Phone Number">
+            <% if (typeof(employee) !== 'undefined') { %>
+            <div class="text-danger"><%= employee.phoneError %></div>
+            <% } %>
           </div>
           <!-- City -->
           <div class="form-group col-md-6">
             <label for="inputCity">City</label>
-            <input type="text" class="form-control" id="inputCity" name="city" placeholder="City" required>
+            <input type="text" class="form-control" id="inputCity" name="city" value="<%= typeof(employee) !== 'undefined' ? employee.city : '' %>" placeholder="City">
+            <% if (typeof(employee) !== 'undefined') { %>
+            <div class="text-danger"><%= employee.cityError %></div>
+            <% } %>
           </div>
         </div>
         <div class="form-group">

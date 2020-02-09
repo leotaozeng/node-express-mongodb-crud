@@ -4,16 +4,19 @@ const { Schema } = mongoose
 // Models are defined through the Schema interface.
 const employeeSchema = new Schema({
   fullName: {
-    type: String
+    type: String,
+    required: [true, 'This field is required']
   },
   email: {
     type: String
   },
   phone: {
-    type: Number
+    type: Number,
+    required: [true, 'This field is required']
   },
   city: {
-    type: String
+    type: String,
+    required: [true, 'This field is required']
   }
 })
 
