@@ -8,7 +8,41 @@
 <body class="bg-info">
   <div class="row">
     <div class="wrapper col-md-6 offset-md-3">
-      <h3>Employee List</h3>
+      <% if (employees.length > 0) { %>
+      <div class="d-flex justify-content-between mb-1">
+        <h3>Employee List</h3>
+        <a href="/admin/add-employee" class="btn btn-secondary"><i class="fas fa-user-plus"></i> Add New</a>
+      </div>
+      <table class="table table-striped text-center">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">City</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% employees.forEach((employees, index) => { %>
+          <tr>
+            <th scope="row"><%= ++index %></th>
+            <td><%= employees.fullName %></td>
+            <td><%= employees.email %></td>
+            <td><%= employees.phone %></td>
+            <td><%= employees.city %></td>
+            <td>
+              <a href=""><i class="fas fa-pencil-alt fa-lg text-body"></i></a>
+              <a href=""><i class="fas fa-trash fa-lg text-body"></i></a> 
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% } else { %>
+      <h3>No Employee List</h3>
+      <% } %>
     </div>
   </div>
 </body>
