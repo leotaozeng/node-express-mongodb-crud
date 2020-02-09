@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const employee = require('./employee.model')
+require('./employee.model')
 
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://Leo:db19950723@cluster0-koiw6.mongodb.net/employeeDB', {
