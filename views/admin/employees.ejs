@@ -25,15 +25,15 @@
           </tr>
         </thead>
         <tbody>
-          <% employees.forEach((employees, index) => { %>
+          <% employees.forEach((employee, index) => { %>
           <tr>
             <th scope="row"><%= ++index %></th>
-            <td><%= employees.fullName %></td>
-            <td><%= employees.email %></td>
-            <td><%= employees.phone %></td>
-            <td><%= employees.city %></td>
+            <td><%= employee.fullName %></td>
+            <td><%= employee.email %></td>
+            <td><%= employee.phone %></td>
+            <td><%= employee.city %></td>
             <td>
-              <a href=""><i class="fas fa-pencil-alt fa-lg text-body"></i></a>
+              <a href="/admin/edit-employee/<%= employee._id %>"><i class="fas fa-pencil-alt fa-lg text-body"></i></a>
               <a href=""><i class="fas fa-trash fa-lg text-body"></i></a> 
             </td>
           </tr>

@@ -1,0 +1,43 @@
+<!-- Full Name -->
+<div class="form-group">
+  <label for="inputFullName">Full Name</label>
+  <input type="text" class="form-control" id="inputFullName" name="fullName"
+    value="<%= typeof(employee) !== 'undefined' ? employee.fullName : '' %>">
+  <% if (typeof(employee) !== 'undefined') { %>
+  <div class="text-danger"><%= employee.fullNameError %></div>
+  <% } %>
+</div>
+<!-- Email -->
+<div class="form-group">
+  <label for="inputEmail1">Email</label>
+  <input type="email" class="form-control" id="inputEmail1" name="email"
+    value="<%= typeof(employee) !== 'undefined' ? employee.email : '' %>" placeholder="name@example.com"
+    aria-describedby="emailHelp">
+  <% if (typeof(employee) !== 'undefined') { %>
+  <div class="text-danger"><%= employee.emailError %></div>
+  <% } %>
+</div>
+<!-- Phone Number and City -->
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="inputPhoneNumber">Phone Number</label>
+    <input type="tel" class="form-control" id="inputPhoneNumber" name="phone"
+      value="<%= typeof(employee) !== 'undefined' ? employee.phone : '' %>">
+    <% if (typeof(employee) !== 'undefined') { %>
+    <div class="text-danger"><%= employee.phoneError %></div>
+    <% } %>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="inputCity">City</label>
+    <input type="text" class="form-control" id="inputCity" name="city"
+      value="<%= typeof(employee) !== 'undefined' ? employee.city : '' %>">
+    <% if (typeof(employee) !== 'undefined') { %>
+    <div class="text-danger"><%= employee.cityError %></div>
+    <% } %>
+  </div>
+</div>
+<!-- Actions -->
+<div class="form-group">
+  <button type="submit" class="btn btn-info"><i class="fas fa-database"></i> Submit</button>
+  <a href="/admin/employees" class="btn btn-secondary"><i class="fas fa-th-list"></i> View All</a>
+</div>

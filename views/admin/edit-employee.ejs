@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head.ejs') -%>
+</head>
+
+<body class="bg-info">
+  <div class="row">
+    <div class="wrapper col-md-6 offset-md-3">
+      <h3>Update Employee</h3>
+      <form action="/admin/edit-employee/<%= employee['_id'] %>" method="POST" autocomplete="off">
+        <%- include('../partials/form.ejs') %>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

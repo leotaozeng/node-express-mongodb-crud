@@ -27,6 +27,7 @@ function handleValidationError(err, body) {
   }
 }
 
+// get employee
 exports.getEmployees = (req, res, next) => {
   // find documents
   Employee.find({}, function (err, docs) {
@@ -38,6 +39,7 @@ exports.getEmployees = (req, res, next) => {
   })
 }
 
+// add employee
 exports.getAddEmployee = (req, res, next) => {
   res.render('admin/add-employee')
 }
@@ -59,7 +61,7 @@ exports.postAddEmployee = (req, res, next) => {
     } else if (err.name === 'ValidationError') {
       handleValidationError(err, req.body)
 
-      res.render('admin/add-employee', {
+      res.render(`admin/add-employee`, {
         employee: req.body
       })
     } else {
@@ -68,3 +70,48 @@ exports.postAddEmployee = (req, res, next) => {
   })
 }
 
+// update employee
+exports.getEditEmployee = (req, res, next) => {
+  const employeeId = req.params.id
+
+  // find documents
+  Employee.findById(employeeId, (err, employee) => {
+    if (!err) {
+      res.render('admin/edit-employee', {
+        employee
+      })
+    }
+  })
+}
+
+exports.postEditEmployee = (req, res, next) => {
+  const employeeId = req.params.id
+
+  // update the document
+  Employee.findByIdAndUpdate(
+    employeeId,
+    req.body,
+    {
+      new: true,
+      runValidators: true,
+      useFindAndModify: false
+    },
+    (err, employee) => {
+      req.body['_id'] = employeeId
+
+      if (!err) {
+        res.redirect('/admin/employees')
+      } else if (err.name === 'ValidationError') {
+        handleValidationError(err, req.body)
+
+        res.render('admin/edit-employee', {
+          employee: req.body
+        })
+      } else {
+        console.log(`Error during document update: ${err}`)
+      }
+    })
+}
+
+// delete employee
+exports.getDeleteEmployee = (req, res, next) => { }
