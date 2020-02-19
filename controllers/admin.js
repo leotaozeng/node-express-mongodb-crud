@@ -68,13 +68,16 @@ exports.getEditEmployee = (req, res, next) => {
   const employeeId = req.params.id
 
   // find documents
-  Employee.findById(employeeId, (err, employee) => {
-    if (!err) {
-      res.render('admin/edit-employee', {
-        employee
-      })
+  Employee.findById(
+    employeeId,
+    (err, employee) => {
+      if (!err) {
+        res.render('admin/edit-employee', {
+          employee
+        })
+      }
     }
-  })
+  )
 }
 exports.postEditEmployee = (req, res, next) => {
   const employeeId = req.params.id
@@ -102,7 +105,8 @@ exports.postEditEmployee = (req, res, next) => {
       } else {
         res.status(500).send(err)
       }
-    })
+    }
+  )
 }
 
 // Delete Employee
