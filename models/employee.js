@@ -29,4 +29,4 @@ const validator = (value) => {
 employeeSchema.path('email').validate(validator, 'Invalid email')
 
 // define a Employee document
-mongoose.model('Employee', employeeSchema)
+module.exports = mongoose.model('Employee', employeeSchema)

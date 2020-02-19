@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
-const Employee = mongoose.model('Employee')
+const Employee = require('../models/employee')
 
 function handleValidationError(err, body) {
-  // errors is an object
+  // Errors is an object
   const { errors } = err
 
   for (const field in errors) {
@@ -27,34 +27,27 @@ function handleValidationError(err, body) {
   }
 }
 
-// get employee
+// Get Employees
 exports.getEmployees = (req, res, next) => {
-  // find documents
-  Employee.find({}, function (err, docs) {
+  //  Get employees from MongoDB
+  Employee.find((err, employees) => {
     if (!err) {
-      res.render('admin/employees', {
-        employees: docs
-      })
+      res.render('admin/employees', { employees })
+    } else {
+      res.status(500).send(err)
     }
   })
 }
 
-// add employee
+// Add Employee
 exports.getAddEmployee = (req, res, next) => {
   res.render('admin/add-employee')
 }
-
 exports.postAddEmployee = (req, res, next) => {
-  // instantiate the model
-  const employee = new Employee()
-  const { fullName, email, phone, city } = req.body
+  // Create an instance of the employee model 
+  const employee = new Employee(req.body)
 
-  employee.fullName = fullName
-  employee.email = email
-  employee.phone = phone
-  employee.city = city
-
-  // save the document
+  // Save the document
   employee.save((err) => {
     if (!err) {
       res.redirect('/admin/employees')
@@ -65,12 +58,12 @@ exports.postAddEmployee = (req, res, next) => {
         employee: req.body
       })
     } else {
-      console.log(`Error during document insertion: ${err}`)
+      res.status(500).send(err)
     }
   })
 }
 
-// update employee
+// Edit Employee
 exports.getEditEmployee = (req, res, next) => {
   const employeeId = req.params.id
 
@@ -83,11 +76,10 @@ exports.getEditEmployee = (req, res, next) => {
     }
   })
 }
-
 exports.postEditEmployee = (req, res, next) => {
   const employeeId = req.params.id
 
-  // update the document
+  // Update the document
   Employee.findByIdAndUpdate(
     employeeId,
     req.body,
@@ -108,10 +100,22 @@ exports.postEditEmployee = (req, res, next) => {
           employee: req.body
         })
       } else {
-        console.log(`Error during document update: ${err}`)
+        res.status(500).send(err)
       }
     })
 }
 
-// delete employee
-exports.getDeleteEmployee = (req, res, next) => { }
+// Delete Employee
+exports.getDeleteEmployee = (req, res, next) => {
+  const employeeId = req.params.id
+
+  Employee.findByIdAndRemove(
+    employeeId,
+    (err) => {
+      if (!err) {
+        res.redirect('/admin/employees')
+      } else {
+        res.status(500).send(err)
+      }
+    })
+}
